@@ -11,10 +11,9 @@
 
 @interface TTTMyScene : SKScene{
     NSArray *pieces;
-    bool isUsersTurn;
     float pieceSize;
     SKSpriteNode *board;
     TTTEngine engine;
 }
-
+-(void)computerMove;
 @end

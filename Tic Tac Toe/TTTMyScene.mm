@@ -14,8 +14,6 @@
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
-        isUsersTurn=YES;
-        
         self.backgroundColor = [SKColor whiteColor];
         
         SKLabelNode *myLabel = [[SKLabelNode alloc]init];
@@ -42,6 +40,8 @@
                 piece.text=@"X";
                 piece.position=CGPointMake((x-1)*pieceSize, (y-1.5)*pieceSize+9);
                 piece.name=[NSString stringWithFormat:@"%i",x+3*(2-y)];
+                piece.hidden=YES;
+                [board addChild:piece];
                 [temp addObject:piece];
             }
         }
@@ -52,16 +52,24 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    if(touches.count==1 && isUsersTurn){
+    if(touches.count==1){
         UITouch *touch=touches.anyObject;
         for(SKLabelNode *piece in pieces){
             if([piece containsPoint:[touch locationInNode:board]] && engine.canPlaceToken(piece.name.intValue)){
                 engine.placeToken(piece.name.intValue, 1);
-                [board addChild:piece];
-                isUsersTurn=NO;
+                piece.hidden=NO;
+                [self computerMove];
             }
         }
     }
+}
+
+-(void)computerMove{
+    byte move=engine.getComputerMove();
+    SKLabelNode *piece=(SKLabelNode*)[board childNodeWithName:[NSString stringWithFormat:@"%i",(int)move]];
+    engine.placeToken(move, 2);
+    piece.text=@"O";
+    piece.hidden=NO;
 }
 
 -(void)update:(CFTimeInterval)currentTime {
