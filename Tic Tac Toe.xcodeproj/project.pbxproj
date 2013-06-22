@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		238DB5271774F54800FDFB96 /* TTTEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 238DB5251774F54800FDFB96 /* TTTEngine.cpp */; };
+		238DB5281774F54800FDFB96 /* TTTEngine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 238DB5251774F54800FDFB96 /* TTTEngine.cpp */; };
 		23D9D1821774B74B003C4113 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D9D1811774B74B003C4113 /* Foundation.framework */; };
 		23D9D1841774B74B003C4113 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D9D1831774B74B003C4113 /* CoreGraphics.framework */; };
 		23D9D1861774B74B003C4113 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D9D1851774B74B003C4113 /* UIKit.framework */; };
@@ -15,9 +17,8 @@
 		23D9D1901774B74B003C4113 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D9D18F1774B74B003C4113 /* main.m */; };
 		23D9D1941774B74B003C4113 /* TTTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D9D1931774B74B003C4113 /* TTTAppDelegate.m */; };
 		23D9D1971774B74B003C4113 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23D9D1951774B74B003C4113 /* Main.storyboard */; };
-		23D9D19A1774B74B003C4113 /* TTTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D9D1991774B74B003C4113 /* TTTViewController.m */; };
-		23D9D19D1774B74B003C4113 /* TTTMyScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 23D9D19C1774B74B003C4113 /* TTTMyScene.m */; };
-		23D9D19F1774B74B003C4113 /* Spaceship.png in Resources */ = {isa = PBXBuildFile; fileRef = 23D9D19E1774B74B003C4113 /* Spaceship.png */; };
+		23D9D19A1774B74B003C4113 /* TTTViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 23D9D1991774B74B003C4113 /* TTTViewController.mm */; };
+		23D9D19D1774B74B003C4113 /* TTTMyScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = 23D9D19C1774B74B003C4113 /* TTTMyScene.mm */; };
 		23D9D1A11774B74B003C4113 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23D9D1A01774B74B003C4113 /* Images.xcassets */; };
 		23D9D1A81774B74B003C4113 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D9D1A71774B74B003C4113 /* XCTest.framework */; };
 		23D9D1A91774B74B003C4113 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23D9D1811774B74B003C4113 /* Foundation.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		238DB5251774F54800FDFB96 /* TTTEngine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TTTEngine.cpp; sourceTree = "<group>"; };
+		238DB5261774F54800FDFB96 /* TTTEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTEngine.h; sourceTree = "<group>"; };
 		23D9D17E1774B74B003C4113 /* Tic Tac Toe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tic Tac Toe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D9D1811774B74B003C4113 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		23D9D1831774B74B003C4113 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -50,10 +53,9 @@
 		23D9D1931774B74B003C4113 /* TTTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTAppDelegate.m; sourceTree = "<group>"; };
 		23D9D1961774B74B003C4113 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		23D9D1981774B74B003C4113 /* TTTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTTViewController.h; sourceTree = "<group>"; };
-		23D9D1991774B74B003C4113 /* TTTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTViewController.m; sourceTree = "<group>"; };
+		23D9D1991774B74B003C4113 /* TTTViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TTTViewController.mm; sourceTree = "<group>"; };
 		23D9D19B1774B74B003C4113 /* TTTMyScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTTMyScene.h; sourceTree = "<group>"; };
-		23D9D19C1774B74B003C4113 /* TTTMyScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTMyScene.m; sourceTree = "<group>"; };
-		23D9D19E1774B74B003C4113 /* Spaceship.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spaceship.png; sourceTree = "<group>"; };
+		23D9D19C1774B74B003C4113 /* TTTMyScene.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TTTMyScene.mm; sourceTree = "<group>"; };
 		23D9D1A01774B74B003C4113 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		23D9D1A61774B74B003C4113 /* Tic Tac ToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tic Tac ToeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		23D9D1A71774B74B003C4113 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -125,10 +127,11 @@
 				23D9D1931774B74B003C4113 /* TTTAppDelegate.m */,
 				23D9D1951774B74B003C4113 /* Main.storyboard */,
 				23D9D1981774B74B003C4113 /* TTTViewController.h */,
-				23D9D1991774B74B003C4113 /* TTTViewController.m */,
+				23D9D1991774B74B003C4113 /* TTTViewController.mm */,
 				23D9D19B1774B74B003C4113 /* TTTMyScene.h */,
-				23D9D19C1774B74B003C4113 /* TTTMyScene.m */,
-				23D9D19E1774B74B003C4113 /* Spaceship.png */,
+				23D9D19C1774B74B003C4113 /* TTTMyScene.mm */,
+				238DB5261774F54800FDFB96 /* TTTEngine.h */,
+				238DB5251774F54800FDFB96 /* TTTEngine.cpp */,
 				23D9D1A01774B74B003C4113 /* Images.xcassets */,
 				23D9D18A1774B74B003C4113 /* Supporting Files */,
 			);
@@ -243,7 +246,6 @@
 			files = (
 				23D9D18E1774B74B003C4113 /* InfoPlist.strings in Resources */,
 				23D9D1A11774B74B003C4113 /* Images.xcassets in Resources */,
-				23D9D19F1774B74B003C4113 /* Spaceship.png in Resources */,
 				23D9D1971774B74B003C4113 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,10 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				23D9D19A1774B74B003C4113 /* TTTViewController.m in Sources */,
+				23D9D19A1774B74B003C4113 /* TTTViewController.mm in Sources */,
 				23D9D1901774B74B003C4113 /* main.m in Sources */,
 				23D9D1941774B74B003C4113 /* TTTAppDelegate.m in Sources */,
-				23D9D19D1774B74B003C4113 /* TTTMyScene.m in Sources */,
+				23D9D19D1774B74B003C4113 /* TTTMyScene.mm in Sources */,
+				238DB5271774F54800FDFB96 /* TTTEngine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				238DB5281774F54800FDFB96 /* TTTEngine.cpp in Sources */,
 				23D9D1B41774B74B003C4113 /* Tic_Tac_ToeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -471,6 +475,7 @@
 				23D9D1B91774B74B003C4113 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		23D9D1BA1774B74B003C4113 /* Build configuration list for PBXNativeTarget "Tic Tac ToeTests" */ = {
 			isa = XCConfigurationList;
@@ -479,6 +484,7 @@
 				23D9D1BC1774B74B003C4113 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

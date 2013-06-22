@@ -7,7 +7,14 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "TTTEngine.h"
 
-@interface TTTMyScene : SKScene
+@interface TTTMyScene : SKScene{
+    NSArray *pieces;
+    bool isUsersTurn;
+    float pieceSize;
+    SKSpriteNode *board;
+    TTTEngine engine;
+}
 
 @end
