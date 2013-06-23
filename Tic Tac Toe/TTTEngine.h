@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <algorithm>
+#include <stdlib.h>
 
 typedef unsigned char byte;
 
@@ -24,7 +25,6 @@ private:
     bool userTurn;
 public:
     Node(){
-        
     }
     Node(bool _userTurn){
         for(byte i=0;i<9;i++){

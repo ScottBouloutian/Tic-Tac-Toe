@@ -59,7 +59,9 @@
                 engine.placeToken(piece.name.intValue);
                 piece.text=@"X";
                 piece.hidden=NO;
-                [self computerMove];
+                if(!engine.isGameOver()){
+                    [self computerMove];
+                }
             }
         }
     }

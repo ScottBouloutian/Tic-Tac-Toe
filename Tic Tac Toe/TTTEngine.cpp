@@ -24,22 +24,30 @@ bool TTTEngine::canPlaceToken(byte index){
 
 byte TTTEngine::minimax(Node &node){
     int utility;
-    byte bestMove;
+    byte bestMoves[9]={0,0,0,0,0,0,0,0,0};
+    byte numMoves=0;
     int bestUtility=-999;
-    
+
     bool moves[9];
     possibleMoves(node, moves);
     for(byte i=0;i<9;i++){
         if(moves[i]){
             Node child=placeToken(node, i);
             utility=minValue(child,-999,999);
+            cout<<utility<<",";
             if(utility>bestUtility){
                 bestUtility=utility;
-                bestMove=i;
+                bestMoves[0]=i;
+                numMoves=1;
+            }else if(utility==bestUtility){
+                bestMoves[numMoves]=i;
+                numMoves++;
             }
         }
     }
-    return bestMove;
+    cout<<endl;
+    cout<<"There are "<<(int)numMoves<<" best moves"<<endl;
+    return bestMoves[rand() % numMoves];
 }
 
 int TTTEngine::maxValue(Node &node,int alpha,int beta){
