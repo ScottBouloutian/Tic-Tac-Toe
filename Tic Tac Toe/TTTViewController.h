@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
+#import "TTTMyScene.h"
 
-@interface TTTViewController : UIViewController
-
+@interface TTTViewController : UIViewController{
+    TTTMyScene *scene;
+}
+- (IBAction)restartTouched;
 @end

@@ -16,4 +16,5 @@
     TTTEngine engine;
 }
 -(void)computerMove;
+-(void)restartGame;
 @end

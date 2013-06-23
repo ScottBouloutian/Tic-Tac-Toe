@@ -11,6 +11,7 @@ using namespace std;
 #include "TTTEngine.h"
 
 TTTEngine::TTTEngine(){
+    restart(true);
 }
 
 void TTTEngine::placeToken(byte index){
@@ -18,7 +19,7 @@ void TTTEngine::placeToken(byte index){
 }
 
 bool TTTEngine::canPlaceToken(byte index){
-    return (state.isUserTurn() && state.getState()[index]==0);
+    return (state.isUserTurn() && !isGameOver() && state.getState()[index]==0);
 }
 
 byte TTTEngine::minimax(Node &node){
@@ -160,4 +161,13 @@ byte TTTEngine::getComputerMove(){
 
 bool TTTEngine::isGameOver(){
     return (gameStatus(state)!=0);
+}
+
+void TTTEngine::restart(bool userStarts){
+    userWentFirst=userStarts;
+    state=Node(userStarts);
+}
+
+bool TTTEngine::didUserGoFirst(){
+    return userWentFirst;
 }

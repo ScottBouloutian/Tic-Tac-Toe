@@ -7,7 +7,6 @@
 //
 
 #import "TTTViewController.h"
-#import "TTTMyScene.h"
 
 @implementation TTTViewController
 
@@ -17,11 +16,9 @@
 
     // Configure the view.
     SKView * skView = (SKView *)self.view;
-    skView.showsFPS = YES;
-    skView.showsNodeCount = YES;
     
     // Create and configure the scene.
-    SKScene * scene = [TTTMyScene sceneWithSize:skView.bounds.size];
+    scene = [TTTMyScene sceneWithSize:skView.bounds.size];
     scene.scaleMode = SKSceneScaleModeAspectFill;
     
     // Present the scene.
@@ -48,4 +45,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (IBAction)restartTouched {
+    [scene restartGame];
+}
 @end

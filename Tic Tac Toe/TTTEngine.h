@@ -24,10 +24,13 @@ private:
     bool userTurn;
 public:
     Node(){
+        
+    }
+    Node(bool _userTurn){
         for(byte i=0;i<9;i++){
             state[i]=0;
         }
-        userTurn=true;
+        userTurn=_userTurn;
     }
     Node(const Node &node){
         for(byte i=0;i<9;i++){
@@ -56,11 +59,14 @@ private:
     byte gameStatus(Node&);
     Node placeToken(const Node&,byte);
     int utility(byte);
+    bool userWentFirst;
 public:
     TTTEngine();
+    void restart(bool);
     void placeToken(byte);
     bool canPlaceToken(byte);
     byte getComputerMove();
+    bool didUserGoFirst();
     bool isGameOver();
 };
 

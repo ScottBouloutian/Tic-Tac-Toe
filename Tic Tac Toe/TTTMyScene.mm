@@ -57,6 +57,7 @@
         for(SKLabelNode *piece in pieces){
             if([piece containsPoint:[touch locationInNode:board]] && engine.canPlaceToken(piece.name.intValue)){
                 engine.placeToken(piece.name.intValue);
+                piece.text=@"X";
                 piece.hidden=NO;
                 [self computerMove];
             }
@@ -74,6 +75,16 @@
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+}
+
+-(void)restartGame{
+    for(SKLabelNode *piece in pieces){
+        piece.hidden=YES;
+    }
+    engine.restart(!engine.didUserGoFirst());
+    if(!engine.didUserGoFirst()){
+        [self computerMove];
+    }
 }
 
 @end
