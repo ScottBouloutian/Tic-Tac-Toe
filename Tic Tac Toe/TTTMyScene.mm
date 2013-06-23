@@ -56,7 +56,7 @@
         UITouch *touch=touches.anyObject;
         for(SKLabelNode *piece in pieces){
             if([piece containsPoint:[touch locationInNode:board]] && engine.canPlaceToken(piece.name.intValue)){
-                engine.placeToken(piece.name.intValue, 1);
+                engine.placeToken(piece.name.intValue);
                 piece.hidden=NO;
                 [self computerMove];
             }
@@ -65,9 +65,9 @@
 }
 
 -(void)computerMove{
-    byte move=engine.getComputerMove();
-    SKLabelNode *piece=(SKLabelNode*)[board childNodeWithName:[NSString stringWithFormat:@"%i",(int)move]];
-    engine.placeToken(move, 2);
+    int move=engine.getComputerMove();
+    SKLabelNode *piece=(SKLabelNode*)[board childNodeWithName:[NSString stringWithFormat:@"%i",move]];
+    engine.placeToken(move);
     piece.text=@"O";
     piece.hidden=NO;
 }

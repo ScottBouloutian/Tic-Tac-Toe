@@ -13,7 +13,7 @@ using namespace std;
 TTTEngine::TTTEngine(){
 }
 
-void TTTEngine::placeToken(byte index,byte token){
+void TTTEngine::placeToken(byte index){
     state=placeToken(state, index);
 }
 
@@ -21,40 +21,81 @@ bool TTTEngine::canPlaceToken(byte index){
     return (state.isUserTurn() && state.getState()[index]==0);
 }
 
-int TTTEngine::minimax(Node &node){
-    byte status=gameStatus(node);
-    if(status!=0){
-        if(node.isUserTurn()){
-            return utility(status);
-        }else{
-            return -utility(status);
-        }
-    }
-    int a=-999;
+byte TTTEngine::minimax(Node &node){
+    int utility;
+    byte bestMove;
+    int bestUtility=-999;
+    
     bool moves[9];
-    possibleMoves(node,moves);
-    for(int i=0;i<9;i++){
+    possibleMoves(node, moves);
+    for(byte i=0;i<9;i++){
         if(moves[i]){
             Node child=placeToken(node, i);
-            a=max(a,-minimax(child));
+            utility=minValue(child,-999,999);
+            if(utility>bestUtility){
+                bestUtility=utility;
+                bestMove=i;
+            }
         }
     }
-    return a;
+    return bestMove;
+}
+
+int TTTEngine::maxValue(Node &node,int alpha,int beta){
+    byte status=gameStatus(node);
+    if(status!=0){
+        return utility(status);
+    }
+    
+    bool moves[9];
+    possibleMoves(node, moves);
+    int v=-999;
+    for(byte i=0;i<9;i++){
+        if(moves[i]){
+            Node child=placeToken(node, i);
+            v=max(v,minValue(child,alpha,beta));
+            if(v>=beta){
+                return v;
+            }
+            alpha=max(alpha,v);
+        }
+    }
+    return v;
+}
+
+int TTTEngine::minValue(Node &node,int alpha,int beta){
+    byte status=gameStatus(node);
+    if(status!=0){
+        return utility(status);
+    }
+    
+    bool moves[9];
+    possibleMoves(node, moves);
+    int v=999;
+    for(byte i=0;i<9;i++){
+        if(moves[i]){
+            Node child=placeToken(node, i);
+            v=min(v,maxValue(child,alpha,beta));
+            if(v<=alpha){
+                return v;
+            }
+            beta=min(beta,v);
+        }
+    }
+    return v;
 }
 
 int TTTEngine::utility(byte gameStatus){
-    switch(gameStatus){
-        case 0:
-            return 0;
-        case 1:
-            return -50;
-        case 2:
-            return 50;
-        case 3:
-            return 0;
-        default:
-            return 0;
+    if(gameStatus==1){
+        return -1;
     }
+    if(gameStatus==2){
+        return 1;
+    }
+    if(gameStatus==3){
+        return 0;
+    }
+    return 0;
 }
 
 void TTTEngine::possibleMoves(Node &node,bool moves[9]){
@@ -69,43 +110,33 @@ void TTTEngine::possibleMoves(Node &node,bool moves[9]){
 }
 
 byte TTTEngine::gameStatus(Node &node){
-    //Check for winners in every row
-    for(byte row=0;row<3;row++){
-        if (node.getState()[row*3]==1 && node.getState()[row*3+1]==1 && node.getState()[row*3+2]==1){
-            return 1;
+    for(byte t=1;t<=2;t++){
+        //Check for winners in every row
+        for(byte row=0;row<3;row++){
+            if (node.getState()[row*3]==t && node.getState()[row*3+1]==t && node.getState()[row*3+2]==t){
+                return t;
+            }
         }
-        if (node.getState()[row*3]==2 && node.getState()[row*3+1]==2 && node.getState()[row*3+2]==2){
-            return 2;
+        
+        //Check for winners in every column
+        for(byte col=0;col<3;col++){
+            if (node.getState()[col]==t && node.getState()[col+3]==t && node.getState()[col+6]==t){
+                return t;
+            }
         }
-    }
-    
-    //Check for winners in every column
-    for(byte col=0;col<3;col++){
-        if (node.getState()[col]==1 && node.getState()[col+3]==1 && node.getState()[col+6]==1){
-            return 1;
+        
+        //Check for winners in the diagonals
+        if(node.getState()[0]==t && node.getState()[4]==t && node.getState()[8]==t){
+            return t;
         }
-        if (node.getState()[col]==2 && node.getState()[col+3]==2 && node.getState()[col+6]==2){
-            return 2;
+        if(node.getState()[2]==t && node.getState()[4]==t && node.getState()[6]==t){
+            return t;
         }
-    }
-    
-    //Check for winners in the diagonals
-    if(node.getState()[0]==1 && node.getState()[4]==1 && node.getState()[8]==1){
-        return 1;
-    }
-    if(node.getState()[0]==2 && node.getState()[4]==2 && node.getState()[8]==2){
-        return 2;
-    }
-    if(node.getState()[2]==1 && node.getState()[4]==1 && node.getState()[6]==1){
-        return 1;
-    }
-    if(node.getState()[2]==2 && node.getState()[4]==2 && node.getState()[6]==2){
-        return 2;
     }
     
     //Check for a tie
     for(byte i=0;i<9;i++){
-        if(state.getState()[i]==0){
+        if(node.getState()[i]==0){
             return 0;
         }
     }
@@ -124,22 +155,9 @@ Node TTTEngine::placeToken(const Node &node, byte index){
 }
 
 byte TTTEngine::getComputerMove(){
-    byte bestMove=0;
-    int bestUtility=-999;
-    int utility;
-    
-    bool moves[9];
-    possibleMoves(state,moves);
-    for(int i=0;i<9;i++){
-        if(moves[i]){
-            Node child=placeToken(state, i);
-            utility=minimax(child);
-            if(utility>bestUtility){
-                bestUtility=utility;
-                bestMove=i;
-            }
-        }
-    }
+    return minimax(state);
+}
 
-    return bestMove;
+bool TTTEngine::isGameOver(){
+    return (gameStatus(state)!=0);
 }

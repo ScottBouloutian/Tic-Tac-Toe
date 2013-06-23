@@ -44,29 +44,24 @@ public:
     void changeTurns(){
         userTurn=!userTurn;
     }
-    void print(){
-        for(int x=0;x<3;x++){
-            for(int y=0;y<3;y++){
-                std::cout<<(int)state[x+y*3]<<" ";
-            }
-            std::cout<<std::endl;
-        }
-    }
 };
 
 class TTTEngine{
 private:
     Node state;
     void possibleMoves(Node&,bool[9]);
-    int minimax(Node&);
+    byte minimax(Node&);
+    int maxValue(Node&,int,int);
+    int minValue(Node&,int,int);
     byte gameStatus(Node&);
-    Node placeToken(const Node& node,byte);
+    Node placeToken(const Node&,byte);
     int utility(byte);
 public:
     TTTEngine();
-    void placeToken(byte,byte);
+    void placeToken(byte);
     bool canPlaceToken(byte);
     byte getComputerMove();
+    bool isGameOver();
 };
 
 #endif /* defined(__Tic_Tac_Toe__TTTEngine__) */
