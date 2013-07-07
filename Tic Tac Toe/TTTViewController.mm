@@ -48,4 +48,8 @@
 - (IBAction)restartTouched {
     [scene restartGame];
 }
+
+- (IBAction)turnToggled {
+    scene.userGoesFirst=!scene.userGoesFirst;
+}
 @end

@@ -15,6 +15,7 @@
     SKSpriteNode *board;
     TTTEngine engine;
 }
+@property bool userGoesFirst;
 -(void)computerMove;
 -(void)restartGame;
 @end

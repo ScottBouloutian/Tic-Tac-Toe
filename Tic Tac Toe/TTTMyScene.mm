@@ -8,21 +8,44 @@
 
 #import "TTTMyScene.h"
 
-@implementation TTTMyScene
+@interface TTTMyScene()
+-(void)updateStatusLabel;
+-(id)randomElement:(NSArray*)array;
+@end
+
+@implementation TTTMyScene{
+    SKLabelNode *statusLabel;
+    NSArray *tieStatuses;
+    NSArray *winStatuses;
+}
+@synthesize userGoesFirst;
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
         
+        //Initialize the possible status messages
+        tieStatuses=[NSArray arrayWithObjects:@"Tie.",@"Suit and Tie.",@"Evenly matched.",@"Again.",@"Just wait.",@"Tie-dye.",@"You didn't win.", nil];
+        winStatuses=[NSArray arrayWithObjects:@"I win.",@"You lose.",@"I'm the best.",@"You can't win!",@"U mad bro?",@"I win!",@"iWin", nil];
+        
+        //Set the background to white
         self.backgroundColor = [SKColor whiteColor];
         
+        //Draw the title
         SKLabelNode *myLabel = [[SKLabelNode alloc]init];
-        
         myLabel.text = @"Tic Tac Toe";
         myLabel.fontColor=[SKColor blackColor];
         myLabel.fontSize = 30;
         myLabel.position = CGPointMake(CGRectGetMidX(self.frame),self.frame.size.height-60);
         [self addChild:myLabel];
+        
+        //Draw the status label
+        statusLabel = [[SKLabelNode alloc]init];
+        statusLabel.text = @"Good Luck.";
+        statusLabel.fontColor=[SKColor blackColor];
+        statusLabel.fontSize = 25;
+        statusLabel.position = CGPointMake(CGRectGetMidX(self.frame),80);
+        [self addChild:statusLabel];
         
         //Draw the tic tac toe board
         board=[[SKSpriteNode alloc]initWithImageNamed:@"board"];
@@ -46,6 +69,10 @@
             }
         }
         pieces=[[NSArray alloc]initWithArray:temp];
+        
+        //By default let the computer move first
+        userGoesFirst=NO;
+        [self computerMove];
     }
     return self;
 }
@@ -59,7 +86,9 @@
                 engine.placeToken(piece.name.intValue);
                 piece.text=@"X";
                 piece.hidden=NO;
-                if(!engine.isGameOver()){
+                if(engine.isGameOver()){
+                    [self updateStatusLabel];
+                }else{
                     [self computerMove];
                 }
             }
@@ -73,6 +102,29 @@
     engine.placeToken(move);
     piece.text=@"O";
     piece.hidden=NO;
+    [self updateStatusLabel];
+}
+
+-(void)updateStatusLabel{
+    switch(engine.gameResult()){
+        case 0:
+            break;
+        case 1:
+            statusLabel.text=@"Hacker!!!";
+            break;
+        case 2:
+            statusLabel.text=[self randomElement:winStatuses];
+            break;
+        case 3:
+            statusLabel.text=[self randomElement:tieStatuses];
+            break;
+        default:
+            break;
+    }
+}
+
+-(id)randomElement:(NSArray *)array{
+    return [array objectAtIndex:arc4random()%array.count];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -80,10 +132,11 @@
 }
 
 -(void)restartGame{
+    statusLabel.text=@"Good Luck.";
     for(SKLabelNode *piece in pieces){
         piece.hidden=YES;
     }
-    engine.restart(!engine.didUserGoFirst());
+    engine.restart(userGoesFirst);
     if(!engine.didUserGoFirst()){
         [self computerMove];
     }

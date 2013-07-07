@@ -68,6 +68,7 @@ public:
     byte getComputerMove();
     bool didUserGoFirst();
     bool isGameOver();
+    byte gameResult();
 };
 
 #endif /* defined(__Tic_Tac_Toe__TTTEngine__) */

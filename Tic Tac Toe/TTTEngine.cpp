@@ -11,7 +11,7 @@ using namespace std;
 #include "TTTEngine.h"
 
 TTTEngine::TTTEngine(){
-    restart(true);
+    restart(false);
 }
 
 void TTTEngine::placeToken(byte index){
@@ -34,7 +34,6 @@ byte TTTEngine::minimax(Node &node){
         if(moves[i]){
             Node child=placeToken(node, i);
             utility=minValue(child,-999,999);
-            cout<<utility<<",";
             if(utility>bestUtility){
                 bestUtility=utility;
                 bestMoves[0]=i;
@@ -45,8 +44,6 @@ byte TTTEngine::minimax(Node &node){
             }
         }
     }
-    cout<<endl;
-    cout<<"There are "<<(int)numMoves<<" best moves"<<endl;
     return bestMoves[rand() % numMoves];
 }
 
@@ -169,6 +166,10 @@ byte TTTEngine::getComputerMove(){
 
 bool TTTEngine::isGameOver(){
     return (gameStatus(state)!=0);
+}
+
+byte TTTEngine::gameResult(){
+    return gameStatus(state);
 }
 
 void TTTEngine::restart(bool userStarts){

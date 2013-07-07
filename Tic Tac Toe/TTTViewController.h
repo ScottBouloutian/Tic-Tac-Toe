@@ -14,4 +14,5 @@
     TTTMyScene *scene;
 }
 - (IBAction)restartTouched;
+- (IBAction)turnToggled;
 @end
